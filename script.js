@@ -7,6 +7,9 @@ let total = 0;
 let mute = false;
 let victory = false;
 
+let changeInterval = setInterval(changes,100000);
+clearInterval(changeInterval);
+
 let buche = new Batiment("Cabane de bûcheron","buche",500,0,10000,false,250);
 let mine = new Batiment("Mine de charbon","mine",5000,0,5000,false,3000);
 let usine = new Batiment("Usine de produits chimiques","usine",40000,0,500,true,400);
@@ -94,9 +97,14 @@ document.querySelector(".victory .btn").addEventListener("click",function() {
     
 });
 
+document.querySelector(".pollutionPopup .btn").addEventListener("click",function() {
+    document.querySelector(".pollutionModale").style.display = "none";
+
+});
+
 document.querySelector(".closeInfo.play").addEventListener("click",function(){
     
-    let changeInterval = setInterval(changes, 47000);
+    changeInterval = setInterval(changes, 47700);
     if (mute == false){
         audio.play();
     }
@@ -207,4 +215,33 @@ function pasThunes(){
         document.querySelector(".boutique").innerHTML = memo;
     }, 1000);
 
+}
+
+
+function affichePollu(terre){
+    if (terre == 2){
+        document.querySelector(".pollutionModale").style.display = "grid";
+        document.querySelector(".pollutionPopup span").innerHTML = "10%";
+        document.querySelector(".pollutionPopup p").innerHTML = "On a coupé beaucoup d'arbres. Des déchets sont entreposés en plein air.";
+    }else if (terre == 3){
+        document.querySelector(".pollutionModale").style.display = "grid";
+        document.querySelector(".pollutionPopup span").innerHTML = "25%";
+        document.querySelector(".pollutionPopup p").innerHTML = "Les productions augmenent beaucoup. Il est de plus en plus difficile de respirer.";
+        
+    }else if (terre == 4){
+        document.querySelector(".pollutionModale").style.display = "grid";
+        document.querySelector(".pollutionPopup span").innerHTML = "50%";
+        document.querySelector(".pollutionPopup p").innerHTML = "Les forêts brûlent... Pourquoi il y autant de bouteilles en plastique dans l'océan ? Les terres noircissent...";
+        
+    }else if (terre == 5){
+        document.querySelector(".pollutionModale").style.display = "grid";
+        document.querySelector(".pollutionPopup span").innerHTML = "75%";
+        document.querySelector(".pollutionPopup p").innerHTML = "Les produits chimiques sont deversés dans les océans... Les poissons meurent... Un continent de plastique se forme dans l'océan... Pourquoi, les nuages sont-ils verts ???";
+        
+    }else if (terre == 6){
+        document.querySelector(".pollutionModale").style.display = "grid";
+        document.querySelector(".pollutionPopup span").innerHTML = "90%";
+        document.querySelector(".pollutionPopup p").innerHTML = "Les terres sont assechées et remplies de pétrole... Il devient difficile de s'alimenter... L'air est tellement pollué qu'il faut un masque à gaz pour respirer...";
+        
+    }
 }
